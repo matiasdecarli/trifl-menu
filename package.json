@@ -1,0 +1,21 @@
+{
+  "name": "scrapper",
+  "version": "1.0.0",
+  "description": "a scrapper to get trifl menu",
+  "main": "scrapper.js",
+  "dependencies": {
+    "request": "^2.55.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/matiasdecarli/trifl-scrapper.git"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1", 
+    "start": "node scrapper.js"
+  },
+  "author": "Matias De Carli",
+  "email": "matiasdecarli@gmail.com",  
+  "license": "MIT"
+}
