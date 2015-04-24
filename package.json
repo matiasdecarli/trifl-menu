@@ -1,21 +1,31 @@
 {
-  "name": "scrapper",
-  "version": "1.0.0",
-  "description": "a scrapper to get trifl menu",
-  "main": "scrapper.js",
-  "dependencies": {
-    "request": "^2.55.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/matiasdecarli/trifl-scrapper.git"
-  },
-  "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1", 
-    "start": "node scrapper.js"
-  },
-  "author": "Matias De Carli",
-  "email": "matiasdecarli@gmail.com",  
-  "license": "MIT"
+    "name": "trifl-menu",
+    "version": "1.0.1",
+    "description": "a scrapper to get trifl menu",
+    "main": "menu.js",
+    "author": "Matias De Carli",
+    "email": "matiasdecarli@gmail.com",
+    "license": "MIT",
+    "dependencies": {
+        "request": "^2.55.0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/matiasdecarli/trifl-scrapper.git"
+    },
+    "devDependencies": {},
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node menu.js"
+    },
+    "slack_base_url": "https://slack.com/api/chat.postMessage",
+    "slack_token": "",
+    "slack_channel": "",
+    "bot_username": "Trifl",
+    "bot_avatar": "https://pbs.twimg.com/profile_images/507563941078114304/0Ub4z1AG_400x400.png",
+    "trifl_url": "https://api.parse.com/1/classes/IterationModel",
+    "send_food": true,
+    "send_beverages": true,
+    "send_special_item": false,
+    "send_timeframes": true
 }
