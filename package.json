@@ -7,6 +7,8 @@
     "email": "matiasdecarli@gmail.com",
     "license": "MIT",
     "dependencies": {
+        "body-parser": "^1.12.3",
+        "express": "^4.12.3",
         "request": "^2.55.0"
     },
     "repository": {
@@ -20,12 +22,15 @@
     },
     "slack_base_url": "https://slack.com/api/chat.postMessage",
     "slack_token": "",
-    "slack_channel": "",
+    "slack_webook_token_menu": "",
+    "slack_webook_token_vote": "",
+    "slack_webook_token_end": "",
+    "slack_channel": "#feeds",
     "bot_username": "Trifl",
     "bot_avatar": "https://pbs.twimg.com/profile_images/507563941078114304/0Ub4z1AG_400x400.png",
     "trifl_url": "https://api.parse.com/1/classes/IterationModel",
     "send_food": true,
-    "send_beverages": true,
+    "send_beverages": false,
     "send_special_item": false,
-    "send_timeframes": true
-}
+    "send_timeframes": false    
+} 
