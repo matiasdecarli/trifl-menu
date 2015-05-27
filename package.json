@@ -13,7 +13,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "git://github.com/matiasdecarli/trifl-scrapper.git"
+        "url": "git://github.com/matiasdecarli/trifl-menu.git"
     },
     "devDependencies": {},
     "scripts": {
@@ -32,5 +32,5 @@
     "send_food": true,
     "send_beverages": false,
     "send_special_item": false,
-    "send_timeframes": false    
-} 
+    "send_timeframes": false
+}
