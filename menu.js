@@ -23,11 +23,11 @@ app.post('/menu/', function(req,res){
     }, function(err, response) {
         if (response.statusCode === 200)
             parseMenu(JSON.parse(response.body), function(err) {
-                if (err) console.log(err);    
+                if (err) console.log(err);
 
                 var command = req.body.text;
-                var time = command.split('/menu');                
-                
+                var time = command.split('/menu');
+
                 if (time[1]) {
                     ended = false;
 
@@ -42,8 +42,8 @@ app.post('/menu/', function(req,res){
                                 return;
                             });
                         }, parseInt(time[1])*60000);
-                    })                    
-                }                
+                    })
+                }
 
                 return res.sendStatus(200);
             });
@@ -74,7 +74,7 @@ app.post('/voting/end', function(req, res) {
 
 var server = app.listen(port, function() {
     var host = server.address().address;
-    var port = server.address().port;    
+    var port = server.address().port;
 });
 
 function addMinutes(date, mins) {
