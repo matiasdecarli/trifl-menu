@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
-app.post('/menu/', function(req,res){
+app.post('/menu/', function(req, res) {
     if (!req.body || !req.body.token || !pjson.slack_webook_token_menu || (req.body.token !== pjson.slack_webook_token_menu))
         return res.sendStatus(401);
 
@@ -31,18 +31,18 @@ app.post('/menu/', function(req,res){
                 if (time[1]) {
                     ended = false;
 
-                    var timeLimit = addMinutes(new Date(),parseInt(time[1]));
+                    var timeLimit = addMinutes(new Date(), parseInt(time[1]));
 
                     postToSlack("Voting enabled: To vote add '+' before your order. Time limit: " +
-                        (timeLimit.getHours()-3) + ':' + timeLimit.getMinutes() , function(){
-                        setTimeout(function() {
-                            if (ended) return;
+                        (timeLimit.getHours() - 3) + ':' + timeLimit.getMinutes(), function() {
+                            setTimeout(function() {
+                                if (ended) return;
 
-                            endVoting(function() {
-                                return;
-                            });
-                        }, parseInt(time[1])*60000);
-                    })
+                                endVoting(function() {
+                                    return;
+                                });
+                            }, parseInt(time[1]) * 60000);
+                        })
                 }
 
                 return res.sendStatus(200);
@@ -67,7 +67,7 @@ app.post('/voting/end', function(req, res) {
 
     ended = true;
 
-    endVoting(function(){
+    endVoting(function() {
         return;
     });
 });
@@ -78,20 +78,35 @@ var server = app.listen(port, function() {
 });
 
 function addMinutes(date, mins) {
-    return new Date(date.getTime() + mins*60000);
+    return new Date(date.getTime() + mins * 60000);
 }
 
 function endVoting(next) {
-    var results = '';
+    var results = [];
+    var result = '';
 
     for (var item in votes) {
-        results = results + item + ' : ' + votes[item] + '\n';
+        addItem(results, votes[item][1].trim());
+
+        if (votes[item].trim().length > 2)
+            addItem(results, votes[item].substr(2, votes[item].length - 1).trim());
     }
 
-    return postToSlack('Time\'s up! :clock1130: Lets order! ' + '\n' + results, function() {
+    for (var item in results) {
+        result = result + item + ' : ' + results[item] + '\n';
+    }
+
+    return postToSlack('Time\'s up! :clock1130: Lets order! ' + '\n' + result, function() {
         return next();
     });
 }
+
+function addItem(array, item) {
+    if (array[item[1]])
+        array[item] = array[item[1]] + 1;
+    else
+        array[item] = 1;
+};
 
 function parseMenu(body, next) {
     var menu = body.results[0];
@@ -104,17 +119,17 @@ function parseMenu(body, next) {
 
     for (var i = 0; i < menu.options.length; i++) {
         //if (!menu.options[i].sold_out || menu.options[i].sold_out === false) {
-            switch (menu.options[i].type) {
-                case 'food':
-                    food = food + (options++) + '. ' + menu.options[i].name + ': ' + menu.options[i].description + ' ' + menu.options[i].picture.url + '\n';
-                    break;
-                case 'beverage':
-                    beverage = beverage + menu.options[i].name + '(' + menu.options[i].description + '), ';
-                    break;
-                case 'special_item':
-                    special_item = special_item + menu.options[i].name + '(' + menu.options[i].description + '), ';
-                    break
-            }
+        switch (menu.options[i].type) {
+            case 'food':
+                food = food + (options++) + '. ' + menu.options[i].name + ': ' + menu.options[i].description + ' ' + menu.options[i].picture.url + '\n';
+                break;
+            case 'beverage':
+                beverage = beverage + menu.options[i].name + '(' + menu.options[i].description + '), ';
+                break;
+            case 'special_item':
+                special_item = special_item + menu.options[i].name + '(' + menu.options[i].description + '), ';
+                break
+        }
         //}
     };
 

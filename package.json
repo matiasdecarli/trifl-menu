@@ -25,7 +25,7 @@
     "slack_webook_token_menu": "",
     "slack_webook_token_vote": "",
     "slack_webook_token_end": "",
-    "slack_channel": "#feeds",
+    "slack_channel": "#lunch",
     "bot_username": "Trifl",
     "bot_avatar": "https://pbs.twimg.com/profile_images/507563941078114304/0Ub4z1AG_400x400.png",
     "trifl_url": "https://api.parse.com/1/classes/IterationModel",
